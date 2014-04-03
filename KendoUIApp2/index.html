@@ -15,6 +15,7 @@
     <script src="scripts/location.js"></script>
     <script src="scripts/weather.js"></script>
     <script src="scripts/app.js"></script>
+    <script src="scripts/userList.js"></script>
     <style>
         html .km-wp-light .km-content,
         html .km-wp-light .km-button,
@@ -32,15 +33,13 @@
     <!--Home-->
     <div id="tabstrip-home"
         data-role="view"
-        data-title="Home">
+        data-title="Home Screen">
 
         <div class="view-content">
-            <h1>Welcome!</h1>
-            <a id="skin-change" data-role="button" data-click="app.changeSkin">Flat</a>
+            <h1>Welcome to CMC!</h1>
+            
             <p>
-                Telerik AppBuilder&trade; enables you to build cross-platform device applications regardless of your
-                    development platform by combining the convenience of a local development toolset with the
-                    power and flexibility of the cloud.
+                This is a simple app to have 1 screen with 5 views. Just to get some hands on to create app using Kendo Mobile and PhoneGap
             </p>
             <div class="img"></div>
         </div>
@@ -49,7 +48,7 @@
     <!--Login-->
     <div id="tabstrip-login"
         data-role="view"
-        data-title="Login"
+        data-title="User Login"
         data-model="app.loginService.viewModel">
 
         <div class="view-content">
@@ -88,7 +87,7 @@
     <!--Location-->
     <div id="tabstrip-location"
         data-role="view"
-        data-title="Location"
+        data-title="Find Location"
         data-init="app.locationService.initLocation"
         data-show="app.locationService.show"
         data-hide="app.locationService.hide"
@@ -112,7 +111,7 @@
     <!--Weather-->
     <div id="tabstrip-weather"
         data-role="view"
-        data-title="Weather"
+        data-title="Local Weather"
         data-model="app.weatherService.viewModel">
 
         <div class="weather">
@@ -147,6 +146,43 @@
         </div>
     </script>
 
+    <!--Favourite-->
+    <div id="tabstrip-favourite"
+        data-role="view"
+        data-title="Favourite Window"
+        data-model="app.userListService.viewModel">
+
+        <div class="userList">
+            <p class="userList-title">List of users</p>
+
+            <div class="separator">
+                <div class="dark"></div>
+                <div class="light"></div>
+            </div>
+
+            <ul class="forecast-list"
+                data-role="listview"
+                data-bind="source: userListDataSource"
+                data-template="userList-forecast-template">
+            </ul>
+        </div>
+    </div>
+
+    <!--Weather forecast template-->
+    <script type="text/x-kendo-tmpl" id="userList-forecast-template">
+        <div> 
+            <div class="position-left">
+                <span class="userList name"><strong>Name: </strong>${name}</span>
+            </div>
+            <div class="position-right">
+                <a href="mailto:"${email}><strong>Send Mail</strong></a>
+            </div>
+            <div class="subtext"><strong>EMail:</strong>${email}
+          	<strong>Phone:</strong>${phone}</div>
+        </div>
+    </script>
+
+
     <!--Layout-->
     <div data-role="layout" data-id="tabstrip-layout">
 
@@ -162,8 +198,9 @@
             <div data-role="tabstrip">
                 <a href="#/" data-icon="home">Home</a>
                 <a href="#tabstrip-login" data-icon="contacts">Login</a>
-                <a href="#tabstrip-location" data-icon="search">Location</a>
+                <a href="#tabstrip-location" data-icon="search">Map</a>
                 <a href="#tabstrip-weather" data-icon="globe">Weather</a>
+                <a href="#tabstrip-favourite" data-icon="favorites">Favourite</a>
             </div>
         </div>
     </div>
